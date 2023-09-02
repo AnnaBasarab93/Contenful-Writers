@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import  {createClient}  from 'contentful'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import SinglePost from './SinglePost';
 
 const GetApi = () => {
 const [post, setPost]=useState([]);
+const navigate = useNavigate();
+const { id } = useParams();
 const apiKey =  import.meta.env.VITE_REACT_CONTENTFUL_ACCESS_TOKEN
 const spaceId = import.meta.env.VITE_REACT_CONTENTFUL_SPACE_ID
 
@@ -19,17 +24,18 @@ useEffect(()=>{
     .catch(console.error)
 
 
-},[])
+},[id])
 
 console.log(post)
 
 return (
+    
     <div className='parent'>
-    {post.length ? post.map((item, index)  => (
-        <div key={index}> 
-        <h3>{item.fields.authorName} </h3>
+    {post.length ? post.map((item)  => (
+        <div key={item.sys.id}> 
+        <h3 >{item.fields.authorName} </h3>
     {Object.keys(item.fields).length && Object.keys(item.fields.authorImage.fields).length ?
-    <img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images'/>
+    <img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images' onClick={() => navigate('/singlepost')}/>
     :null
     }
         </div>

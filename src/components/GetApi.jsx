@@ -24,22 +24,14 @@ useEffect(()=>{
 console.log(post)
 
 return (
-    <div>
+    <div className='parent'>
     {post.length ? post.map((item, index)  => (
         <div key={index}> 
         <h3>{item.fields.authorName} </h3>
     {Object.keys(item.fields).length && Object.keys(item.fields.authorImage.fields).length ?
-    <img src={`https:${item.fields.authorImage.fields.file.url}`} />
+    <img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images'/>
     :null
     }
-        <p>{item.fields.biography}</p>
-        <h4>{item.fields.bookTitle}</h4>
-    {Object.keys(item.fields).length && Object.keys(item.fields.bookImages.fields).length ? 
-        <img src={`https:${item.fields.bookImages.fields.file.url}`} />
-    :null
-    }
-        <p>{item.fields.bookInformation}</p>
-
         </div>
     )):null}
 

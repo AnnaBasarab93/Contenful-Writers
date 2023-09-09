@@ -50,3 +50,24 @@
 .images {
   width: 200px;
 }
+
+.singleImg{
+  width: 300px;
+}
+
+.bookContainer{
+  display: flex;
+  
+}
+.flexItem {
+  justify-content: space-around;
+}
+
+.bookTitle{
+  text-align: center;
+  
+}
+.navB{
+  display: flex;
+ justify-content: center;
+}

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import  {createClient}  from 'contentful'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import SinglePost from './SinglePost';
 
 const GetApi = () => {
 const [post, setPost]=useState([]);
@@ -26,7 +25,7 @@ useEffect(()=>{
 
 },[id])
 
-console.log(post)
+//console.log(post)
 
 return (
     
@@ -35,7 +34,7 @@ return (
         <div key={item.sys.id}> 
         <h3 >{item.fields.authorName} </h3>
     {Object.keys(item.fields).length && Object.keys(item.fields.authorImage.fields).length ?
-    <img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images' onClick={() => navigate('/singlepost')}/>
+    <img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images' onClick={() => navigate(`singlepost/${item.sys.id}`)}/>
     :null
     }
         </div>

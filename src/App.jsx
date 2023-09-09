@@ -11,8 +11,8 @@ function App() {
     <>
     <NavBar />
     <Routes>
-      <Route path='/' element={<GetApi/>} />
-      <Route path='singlepost/:id' element={<SinglePost/>} />
+      <Route path='/' element={<GetApi />} />
+      <Route path='singlepost/:id' element={<SinglePost />} />
 
     </Routes>
     </>

@@ -37,7 +37,7 @@ return (
 
     <div className='parent'>
     <h1 className='logo_name'>The Blog on Authors</h1>
-    <img src='src/img/blog_slider.jpg' />
+    <img src='./src/img/blog_slider.jpg' />
     <h5 className='quote'>“If a nation loses its storytellers, it loses its childhood.”
     ~ Peter Handke</h5>
     <Row xs={1} md={2} className="g-4"  >

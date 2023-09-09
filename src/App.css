@@ -1,45 +1,11 @@
+
 #root {
-  max-width: 1280px;
+ /* max-width: 1280px;*/
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 
 .parent {
   display: flex;
@@ -48,7 +14,8 @@
 }
 
 .images {
-  width: 200px;
+  width: 250px;
+  margin-top: 50px;
 }
 
 .singleImg{
@@ -65,9 +32,40 @@
 
 .bookTitle{
   text-align: center;
+  margin-bottom: 30px;
   
 }
-.navB{
-  display: flex;
- justify-content: center;
+
+.logo_name {
+  font-family: 'Cedarville Cursive', cursive;
+  margin: 20px 0px 20px 0px;
+}
+
+.biography {
+  margin: 15px 0px 15px 0px;
+}
+
+.must_read {
+  font-family: 'Cedarville Cursive', cursive;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.title_author { 
+text-align: center;
+margin-bottom: 30px;
+}
+
+.bookinfo {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.quote {
+  font-family: 'Cedarville Cursive', cursive;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }

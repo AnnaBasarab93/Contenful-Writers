@@ -25,25 +25,32 @@ client.getEntry(id)
 console.log(post)
 
   return (
-<div className='singleParent'>
+<div className="container mt-4">
     <div key = {`post.sys.${id}`}>
   {Object.keys(post).length  ?
-<div>
-    <h2>{post.authorName}</h2>
+    <div className="row">
+      <h2 className='title_author'>{post.authorName}</h2>
+          <div className="col-md-6">
     <img src={`https:${post.authorImage.fields.file.url}`} className='singleImg' />
-    <h3>Biography</h3>
+    <h3 className ='biography'>Biography</h3>
     <p>{post.biography}</p>
-    <h3>Must read by this author</h3>
+    </div>
+    <div className="col-md-6">
+    <h3 className='must_read'>Must read by this author</h3>
     <h3 className='bookTitle'>{post.bookTitle}</h3>
-  <div className ='bookContainer'>
-    <img src={`https:${post.bookImages.fields.file.url}`} width= '30%'  className='flexItem'/>
-    <p className='flexItem'>{post.bookInformation}</p>
-  </div> 
-  <a href={post.buyBookUrl}> <FontAwesomeIcon icon={faBasketShopping} style={{color: "#020203"}} />  BUY BOOK HERE!</a>
+
+
+  
+    <img src={`https:${post.bookImages.fields.file.url}`} style={{ maxWidth: '30%' }}  className="img-fluid fluid" />
+    <p className="flex-grow-1 bookinfo">{post.bookInformation}</p>
+  
+  <a href={post.buyBookUrl} className="btn btn-primary"> <FontAwesomeIcon icon={faBasketShopping} className="mr-2" />  BUY BOOK HERE!</a>
+    </div>
     </div>
   :null
   }
   </div>
+
 </div>
   );
 };

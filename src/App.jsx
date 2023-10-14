@@ -1,4 +1,4 @@
-import GetApi from './components/GetApi'
+import GetWriters from './components/GetApi'
 import SinglePost from './components/SinglePost'
 import { Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
@@ -11,9 +11,8 @@ function App() {
     <>
     <NavBar />
     <Routes>
-      <Route path='/' element={<GetApi />} />
+      <Route path='/' element={<GetWriters />} />
       <Route path='singlepost/:id' element={<SinglePost />} />
-
     </Routes>
     </>
   )

@@ -5,30 +5,40 @@ import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 
 
-const GetApi = () => {
+const GetWriters = () => {
 const [post, setPost]=useState([]);
 const navigate = useNavigate();
 const { id } = useParams();
-const apiKey =  import.meta.env.VITE_REACT_CONTENTFUL_ACCESS_TOKEN
-const spaceId = import.meta.env.VITE_REACT_CONTENTFUL_SPACE_ID
 
-//console.log(apiKey, spaceId)
+const getFetch =async ()=> {
+try {
+  let config = {
+    url: "http://localhost:8000",
+    method: "get",
+    credentials: "include",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Credentials": "true"
+    },
+  }
+  const response = await axios(config);
+  console.log(response.data);
+  setPost(response.data);
 
-const client = createClient({
-        space:  spaceId,
-        accessToken: apiKey
-    });
-
+} catch (error) {
+  console.log("Error fetching data:", error);
+} finally {
+  setPost("");
+}
+};
 useEffect(()=>{
-    client.getEntries()
-    .then((entries) => setPost(entries.items))
-    .catch(console.error)
-
-
-},[id])
+  getFetch();
+},[])
 
 //console.log(post)
 
@@ -52,9 +62,10 @@ return (
     </Card.Body>
         </div>
     )):null}
-   </Row>
+    </Row>
     </div>
 )
 }
 
-export default GetApi;
+
+export default GetWriters;

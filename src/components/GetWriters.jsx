@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -13,7 +15,11 @@ const GetWriters = () => {
 const [post, setPost]=useState([]);
 const [loading, setLoading]=useState(false)
 const navigate = useNavigate();
-const { id } = useParams();
+
+
+useEffect(()=>{
+  getFetch();
+},[])
 
 useEffect(()=>{
   getFetch();
@@ -39,7 +45,6 @@ const getFetch =async ()=> {
 }
 }
 
-console.log(post)
 return (
   <div className='parent'>
   {loading ? (
@@ -51,9 +56,6 @@ return (
   ~ Peter Handke</h5>
   <Row xs={1} md={2} className="g-4"  >
   {post.length ? post.map((item)  => (
-      <div> 
-      {Object.keys(item).length ?
-  <Card.Img src={`${item.authorImage}`}  className='images' />
   :null
   }
   <Card.Body >

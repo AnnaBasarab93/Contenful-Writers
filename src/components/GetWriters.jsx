@@ -5,64 +5,73 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
+
 
 
 
 const GetWriters = () => {
 const [post, setPost]=useState([]);
+const [loading, setLoading]=useState(false)
 const navigate = useNavigate();
-const { id } = useParams();
 
-const getFetch =async ()=> {
-  try{
-    let config = {
-      url: "http://localhost:8000",
-      method: "get",
-      credentials: "include",
-      headers: {
-      },
-}
-    const response = await axios(config);
-    console.log(response.data)
-    setPost(response.data)
-    console.log(post);
-    
-}catch(error){
-  console.log("Error to fetch data")
-}finally{
-  setPost("")
-}
-}
 
 useEffect(()=>{
   getFetch();
 },[])
 
-return (
-
-
-    <div className='parent'>
-    <h1 className='logo_name'>The Blog on Authors</h1>
-    <img src='./src/img/blog-slider.jpg' />
-    <h5 className='quote'>“If a nation loses its storytellers, it loses its childhood.”
-    ~ Peter Handke</h5>
-    <Row xs={1} md={2} className="g-4"  >
-    {post.length ? post.map((item)  => (
-        <div key={item.sys.id}> 
-        {Object.keys(item.fields).length && Object.keys(item.fields.authorImage.fields).length ?
-    <Card.Img src={`https:${item.fields.authorImage.fields.file.url}`}  className='images' onClick={() => navigate(`singlepost/${item.sys.id}`)}/>
-    :null
-    }
-    <Card.Body >
-    <Card.Title as="h5">{item.fields.authorName} </Card.Title>
-    </Card.Body>
-
-        </div>
-    )):null}
-    </Row>
-    </div>
-)
+const getFetch =async ()=> {
+  try{
+    setLoading(true);
+    let config = {
+      url: "http://localhost:8000/api/writers",
+      method: "get",
+      credentials: "include",
+      headers: {
+      },
+}
+    const response = await axios(config)
+    console.log(response.data)
+    setPost(response.data)
+}catch(error){
+  console.log("Error to fetch data")
+}finally{
+  setLoading(false)
+}
 }
 
+const handleClick = () => {
+  navigate(`singlepost/${_id}`)
+}
+
+
+return (
+  <div className='parent'>
+  {loading ? (
+  <p>Loading...</p>) : (
+  <>
+  <h1 className='logo_name'>The Blog on Authors</h1>
+  <img src='./src/img/blog-slider.jpg' />
+  <h5 className='quote'>“If a nation loses its storytellers, it loses its childhood.”
+  ~ Peter Handke</h5>
+  <Row xs={1} md={2} className="g-4"  >
+  {post.length ? post.map((item)  => (
+    
+      <div> 
+      {Object.keys(item).length ?
+  <Card.Img src={`${item.authorImage}`}  className='images' onClick={() =>  navigate(`singlepost/${item._id}`)}/>
+  :null
+  }
+  <Card.Body >
+  <Card.Title as="h5">{item.authorName} </Card.Title>
+  </Card.Body>
+      </div>
+  )):null} 
+  </Row>
+  </> 
+  )}
+  </div>
+)
+}
 
 export default GetWriters

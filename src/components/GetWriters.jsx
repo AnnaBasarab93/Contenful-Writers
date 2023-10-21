@@ -1,36 +1,42 @@
 import React, {useEffect, useState} from 'react'
-import  {createClient}  from 'contentful'
 import { useNavigate, useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 
 
-const GetApi = () => {
+const GetWriters = () => {
 const [post, setPost]=useState([]);
 const navigate = useNavigate();
 const { id } = useParams();
-const apiKey =  import.meta.env.VITE_REACT_CONTENTFUL_ACCESS_TOKEN
-const spaceId = import.meta.env.VITE_REACT_CONTENTFUL_SPACE_ID
 
-//console.log(apiKey, spaceId)
-
-const client = createClient({
-        space:  spaceId,
-        accessToken: apiKey
-    });
+const getFetch =async ()=> {
+  try{
+    let config = {
+      url: "http://localhost:8000",
+      method: "get",
+      credentials: "include",
+      headers: {
+      },
+}
+    const response = await axios(config);
+    console.log(response.data)
+    setPost(response.data)
+    console.log(post);
+    
+}catch(error){
+  console.log("Error to fetch data")
+}finally{
+  setPost("")
+}
+}
 
 useEffect(()=>{
-    client.getEntries()
-    .then((entries) => setPost(entries.items))
-    .catch(console.error)
-
-
-},[id])
-
-//console.log(post)
+  getFetch();
+},[])
 
 return (
 
@@ -50,11 +56,13 @@ return (
     <Card.Body >
     <Card.Title as="h5">{item.fields.authorName} </Card.Title>
     </Card.Body>
+
         </div>
     )):null}
-   </Row>
+    </Row>
     </div>
 )
 }
 
-export default GetApi;
+
+export default GetWriters

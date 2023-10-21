@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import  {createClient}  from 'contentful'
 import { useNavigate, useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,32 +14,29 @@ const navigate = useNavigate();
 const { id } = useParams();
 
 const getFetch =async ()=> {
-try {
-  let config = {
-    url: "http://localhost:8000",
-    method: "get",
-    credentials: "include",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Credentials": "true"
-    },
-  }
-  const response = await axios(config);
-  console.log(response.data);
-  setPost(response.data);
-
-} catch (error) {
-  console.log("Error fetching data:", error);
-} finally {
-  setPost("");
+  try{
+    let config = {
+      url: "http://localhost:8000",
+      method: "get",
+      credentials: "include",
+      headers: {
+      },
 }
-};
+    const response = await axios(config);
+    console.log(response.data)
+    setPost(response.data)
+    console.log(post);
+    
+}catch(error){
+  console.log("Error to fetch data")
+}finally{
+  setPost("")
+}
+}
+
 useEffect(()=>{
   getFetch();
 },[])
-
-//console.log(post)
 
 return (
 
@@ -60,6 +56,7 @@ return (
     <Card.Body >
     <Card.Title as="h5">{item.fields.authorName} </Card.Title>
     </Card.Body>
+
         </div>
     )):null}
     </Row>
@@ -68,4 +65,4 @@ return (
 }
 
 
-export default GetWriters;
+export default GetWriters

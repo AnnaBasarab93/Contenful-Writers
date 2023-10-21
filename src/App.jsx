@@ -1,4 +1,4 @@
-import GetWriters from './components/GetApi'
+import GetWriters from './components/GetWriters'
 import SinglePost from './components/SinglePost'
 import { Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'

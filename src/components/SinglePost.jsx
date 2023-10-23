@@ -41,6 +41,8 @@ const SinglePost = ({ }) => {
   
     return (
   <div className="container mt-4">
+   {loading ? (
+      <p>Loading</p>):(
      <div>
     {Object.keys(post).length  ?
       <div className="row">
@@ -53,9 +55,7 @@ const SinglePost = ({ }) => {
       <div className="col-md-6">
       <h3 className='must_read'>Must read by this author</h3>
       <h3 className='bookTitle'>{post.bookTitle}</h3>
-  
-  
-    
+
       <img src={`${post.bookImage}`} style={{ maxWidth: '30%' }}  className="img-fluid fluid" />
       <p className="flex-grow-1 bookinfo">{post.bookInfo}</p>
     
@@ -63,9 +63,9 @@ const SinglePost = ({ }) => {
       </div>
       </div>
     :null
-    }
+    })
     </div> 
-  
+      )}
   </div>
     );
   };

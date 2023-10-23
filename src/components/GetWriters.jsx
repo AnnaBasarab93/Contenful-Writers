@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
-
 
 
 
@@ -16,10 +13,6 @@ const [post, setPost]=useState([]);
 const [loading, setLoading]=useState(false)
 const navigate = useNavigate();
 
-
-useEffect(()=>{
-  getFetch();
-},[])
 
 useEffect(()=>{
   getFetch();
@@ -45,6 +38,7 @@ const getFetch =async ()=> {
 }
 }
 
+console.log(post)
 return (
   <div className='parent'>
   {loading ? (
@@ -56,6 +50,9 @@ return (
   ~ Peter Handke</h5>
   <Row xs={1} md={2} className="g-4"  >
   {post.length ? post.map((item)  => (
+      <div> 
+      {Object.keys(item).length ?
+  <Card.Img src={`${item.authorImage}`}  className='images' onClick={() =>  navigate(`singlepost/${item._id}`)}/>
   :null
   }
   <Card.Body >
